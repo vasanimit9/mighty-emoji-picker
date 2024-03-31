@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="module" src="./src/main.tsx"></script>
+  </head>
+  <body>
+    <mighty-emoji-picker theme="auto"></mighty-emoji-picker>
+    <script>
+      document.querySelector('mighty-emoji-picker').addEventListener('emojiclick', console.log);
+      setTimeout(() => {
+        document.querySelector('mighty-emoji-picker').setAttribute('theme', 'dark');
+      }, 4500)
+    </script>
+  </body>
+</html>
