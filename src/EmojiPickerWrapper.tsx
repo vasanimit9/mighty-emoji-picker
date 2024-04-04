@@ -11,11 +11,14 @@ const EmpojiPickerWrapper = (props: IEmojiPickerWrapperProps) => {
   const { mightyEmojiPickerElement } = props;
 
   const [attributeProps, setAttributeProps] = useState({});
+  const [configChangedTime, setConfigChangedTime] = useState(Date.now())
 
   useEffect(() => {
     const attributeChangeHandler = function () {
       const { detail } = arguments[0] as CustomEvent;
-      setAttributeProps(getEmojiPickerProps(detail[0], detail[1], detail[2]));
+      setAttributeProps(
+        getEmojiPickerProps(attributeProps, detail[0], detail[1], detail[2])
+      );
     };
     mightyEmojiPickerElement.addEventListener(
       "attributechange",
@@ -27,6 +30,23 @@ const EmpojiPickerWrapper = (props: IEmojiPickerWrapperProps) => {
         attributeChangeHandler
       );
     };
+  }, []);
+
+  useEffect(() => {
+    const configChangeHandler = () => {
+      setAttributeProps({
+        reactions: mightyEmojiPickerElement.reactions || undefined,
+        categories: mightyEmojiPickerElement.categories || undefined,
+        customEmojis: mightyEmojiPickerElement.customEmojis || undefined,
+        style: mightyEmojiPickerElement.constainerStyle || undefined,
+        getEmojiUrl: mightyEmojiPickerElement.getEmojiUrl || undefined
+      })
+      setConfigChangedTime(Date.now());
+    }
+    mightyEmojiPickerElement.addEventListener('configchange', configChangeHandler);
+    return () => {
+      mightyEmojiPickerElement.removeEventListener('configchange', configChangeHandler);
+    }
   }, []);
 
   const onEmojiClick = useCallback(
@@ -61,6 +81,7 @@ const EmpojiPickerWrapper = (props: IEmojiPickerWrapperProps) => {
 
   return (
     <EmojiPicker
+      key={configChangedTime}
       onEmojiClick={onEmojiClick}
       onReactionClick={onReactionClick}
       onSkinToneChange={onSkinToneChange}

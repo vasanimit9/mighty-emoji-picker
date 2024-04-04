@@ -1,10 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import EmpojiPickerWrapper from "./EmojiPickerWrapper";
+import type {
+  MouseDownEvent,
+  OnSkinToneChange,
+} from "emoji-picker-react/dist/config/config";
+import type { GetEmojiUrl } from "emoji-picker-react/dist/components/emoji/BaseEmojiProps";
+import type { CategoriesConfig } from "emoji-picker-react/dist/config/categoryConfig";
+import { CustomEmoji } from "emoji-picker-react/dist/config/customEmojiConfig";
 
 export class MightyEmojiPicker extends HTMLElement {
   reactAppRoot: ReturnType<typeof ReactDOM.createRoot>;
   renderRoot: ShadowRoot;
+  #style?: React.CSSProperties | null;
+  #getEmojiUrl?: GetEmojiUrl | null;
+  #categories?: CategoriesConfig | null;
+  #customEmojis?: CustomEmoji[] | null;
+  #reactions?: string[] | null;
 
   constructor() {
     super();
@@ -16,6 +28,67 @@ export class MightyEmojiPicker extends HTMLElement {
 
   static get observedAttributes() {
     return ['theme', 'emoji-style'];
+  }
+
+  dispatchConfigChangeEvent() {
+    const configChangeEvent = new CustomEvent('configchange');
+    this.dispatchEvent(configChangeEvent);
+  }
+
+  set onEmojiClick(value: EventListenerOrEventListenerObject) {
+    this.addEventListener('emojiclick', value);
+  }
+
+  set onReactionClick(value: EventListenerOrEventListenerObject) {
+    this.addEventListener('reactionclick', value);
+  }
+
+  set onSkinToneChange(value: EventListenerOrEventListenerObject) {
+    this.addEventListener('skintonechange', value);
+  }
+
+  set containerStyle(value: React.CSSProperties) {
+    this.#style = value;
+    this.dispatchConfigChangeEvent();
+  }
+
+  get constainerStyle() {
+    return this.#style;
+  }
+
+  set getEmojiUrl(value: GetEmojiUrl | null) {
+    this.#getEmojiUrl = value;
+    this.dispatchConfigChangeEvent();
+  }
+
+  get getEmojiUrl() {
+    return this.#getEmojiUrl || null;
+  }
+
+  set categories(categories: CategoriesConfig | null) {
+    this.#categories = categories;
+    this.dispatchConfigChangeEvent();
+  }
+
+  get categories() {
+    return this.#categories || null;
+  }
+
+  set customEmojis(value: CustomEmoji[] | null) {
+    this.#customEmojis = value;
+    this.dispatchConfigChangeEvent();
+  }
+
+  get customEmojis() {
+    return this.#customEmojis || null;
+  }
+
+  set reactions(value: string[] | null) {
+    this.#reactions = value;
+  }
+
+  get reactions() {
+    return this.#reactions || null;
   }
 
   attributeChangedCallback() {

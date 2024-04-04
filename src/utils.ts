@@ -8,6 +8,7 @@ import type {
 } from "emoji-picker-react";
 
 const getEmojiPickerProps = (
+  attributeProps: Partial<PickerProps>,
   prop: string,
   _: string,
   newValue: string
@@ -74,6 +75,30 @@ const getEmojiPickerProps = (
     case "allow-expand-reactions":
       return { 
         allowExpandReactions: !!newValue
+      }
+    case "preview-config--default-emoji":
+      return {
+        ...attributeProps,
+        previewConfig:{
+          ...(attributeProps.previewConfig ?? {}),
+          defaultEmoji: newValue
+        }
+      }
+    case "preview-config--default-caption":
+      return {
+        ...attributeProps,
+        previewConfig:{
+          ...(attributeProps.previewConfig ?? {}),
+          defaultCaption: newValue
+        }
+      }
+    case "preview-config--show-preview":
+      return {
+        ...attributeProps,
+        previewConfig:{
+          ...(attributeProps.previewConfig ?? {}),
+          showPreview: !!newValue
+        }
       }
     default:
       return {};
