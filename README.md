@@ -1,5 +1,5 @@
 # `mighty-emoji-picker`
-This package is thin web component wrapper on top of [`emoji-picker-react`](https://www.npmjs.com/package/emoji-picker-react).
+This package is a thin web component wrapper on top of [`emoji-picker-react`](https://www.npmjs.com/package/emoji-picker-react).
 
 ## Usage
 ### HTML
