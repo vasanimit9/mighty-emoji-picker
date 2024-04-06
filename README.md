@@ -127,4 +127,5 @@ More:
   ];
   ```
 
-
+## Future 
+This package does not have a counterpart for `Emoji` component from [`emoji-picker-react`](https://www.npmjs.com/package/emoji-picker-react). That will be added as soon as possible.
