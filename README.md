@@ -1,5 +1,5 @@
 # `mighty-emoji-picker`
-This package is thin web component wrapper on top of (`emoji-picker-react`)[https://www.npmjs.com/package/emoji-picker-react].
+This package is thin web component wrapper on top of [`emoji-picker-react`](https://www.npmjs.com/package/emoji-picker-react).
 
 ## Usage
 ### HTML
@@ -16,7 +16,7 @@ Add it anywhere in your html code.
 </html>
 ```
 ### React
-If you want to use it with `react`, you should use (`emoji-picker-react`)[https://www.npmjs.com/package/emoji-picker-react]
+If you want to use it with `react`, you should use [`emoji-picker-react`](https://www.npmjs.com/package/emoji-picker-react)
 
 ## Events
 The `mighty-emoji-picker` web component dispatches the following events using the `CustomEvent` constructor:
@@ -29,7 +29,7 @@ The `mighty-emoji-picker` web component dispatches the following events using th
 ## Configuration
 
 ### Attributes
-`emoji-picker-react` is very versatile. Here is the 1:1 mapping for the props. For more details, please checkout the documentation of (`emoji-picker-react`)[https://www.npmjs.com/package/emoji-picker-react].
+`emoji-picker-react` is very versatile. Here is the 1:1 mapping for the props. For more details, please checkout the documentation of [`emoji-picker-react`](https://www.npmjs.com/package/emoji-picker-react).
 
 | Attribute | Default Value | Description |
 | -- | -- | -- |
