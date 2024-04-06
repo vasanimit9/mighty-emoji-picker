@@ -7,103 +7,97 @@ import type {
   Theme,
 } from "emoji-picker-react";
 
-const getEmojiPickerProps = (
-  attributeProps: Partial<PickerProps>,
-  prop: string,
-  _: string,
-  newValue: string
-): Partial<PickerProps> => {
-  switch (prop) {
-    case "open":
-      return {
-        open: !!newValue,
-      };
-    case "auto-focus-search":
-      return {
-        autoFocusSearch: !!newValue,
-      };
-    case "theme":
-      return {
-        theme: newValue as Theme,
-      };
-    case "emoji-style":
-      return {
-        emojiStyle: newValue as EmojiStyle,
-      };
-    case "default-skin-tone":
-      return {
-        defaultSkinTone: newValue as SkinTones,
-      };
-    case "lazy-load-emojis":
-      return {
-        lazyLoadEmojis: !!newValue,
-      };
-    case "search-placeholder":
-      return {
-        searchPlaceHolder: newValue,
-      };
-    case "suggested-emojis-mode":
-      return {
-        suggestedEmojisMode: newValue as SuggestionMode,
-      };
-    case "skinTonesDisabled":
-      return {
-        skinTonesDisabled: !!newValue,
-      };
-    case "search-disabled":
-      return {
-        searchDisabled: !!newValue,
-      };
-    case "skin-tone-picker-location":
-      return {
-        skinTonePickerLocation: newValue as SkinTonePickerLocation,
-      };
-    case "emoji-version":
-      return {
-        emojiVersion: newValue,
-      };
-    case "width":
-      return {
-        width: isNaN(parseFloat(newValue)) ? newValue : parseFloat(newValue),
-      };
-    case "height":
-      return {
-        height: isNaN(parseFloat(newValue)) ? newValue : parseFloat(newValue),
-      };
-    case "reactions-default-open":
-      return { reactionsDefaultOpen: !!newValue };
-    case "allow-expand-reactions":
-      return { 
-        allowExpandReactions: !!newValue
-      }
-    case "preview-config--default-emoji":
-      return {
-        ...attributeProps,
-        previewConfig:{
-          ...(attributeProps.previewConfig ?? {}),
-          defaultEmoji: newValue
-        }
-      }
-    case "preview-config--default-caption":
-      return {
-        ...attributeProps,
-        previewConfig:{
-          ...(attributeProps.previewConfig ?? {}),
-          defaultCaption: newValue
-        }
-      }
-    case "preview-config--show-preview":
-      return {
-        ...attributeProps,
-        previewConfig:{
-          ...(attributeProps.previewConfig ?? {}),
-          showPreview: !!newValue
-        }
-      }
-    default:
-      return {};
-  }
+export const emojiPickerAttributePropMap: {
+  [key: string]: (
+    currentProps: Partial<PickerProps>,
+    oldValue: string,
+    newValue: string
+  ) => Partial<PickerProps>;
+} = {
+  open: (props, _, newValue) => ({
+    ...props,
+    open: !!newValue,
+  }),
+  "auto-focus-search": (props, _, newValue) => ({
+    ...props,
+    autoFocusSearch: !!newValue,
+  }),
+  theme: (props, _, newValue) => ({
+    ...props,
+    theme: newValue as Theme,
+  }),
+  "emoji-style": (props, _, newValue) => ({
+    ...props,
+    emojiStyle: newValue as EmojiStyle,
+  }),
+  "default-skin-tone": (props, _, newValue) => ({
+    ...props,
+    defaultSkinTone: newValue as SkinTones,
+  }),
+  "lazy-load-emojis": (props, _, newValue) => ({
+    ...props,
+    lazyLoadEmojis: !!newValue,
+  }),
+  "search-placeholder": (props, _, newValue) => ({
+    ...props,
+    searchPlaceHolder: newValue,
+  }),
+  "suggested-emojis-mode": (props, _, newValue) => ({
+    ...props,
+    suggestedEmojisMode: newValue as SuggestionMode,
+  }),
+  "skin-tones-disabled": (props, _, newValue) => ({
+    ...props,
+    skinTonesDisabled: !!newValue,
+  }),
+  "search-disabled": (props, _, newValue) => ({
+    ...props,
+    searchDisabled: !!newValue,
+  }),
+  "skin-tone-picker-location": (props, _, newValue) => ({
+    ...props,
+    skinTonePickerLocation: newValue as SkinTonePickerLocation,
+  }),
+  "emoji-version": (props, _, newValue) => ({
+    ...props,
+    emojiVersion: newValue,
+  }),
+  width: (props, _, newValue) => ({
+    ...props,
+    width: isNaN(parseFloat(newValue)) ? newValue : parseFloat(newValue),
+  }),
+  height: (props, _, newValue) => ({
+    ...props,
+    height: isNaN(parseFloat(newValue)) ? newValue : parseFloat(newValue),
+  }),
+  "reactions-default-open": (props, _, newValue) => ({
+    ...props,
+    reactionsDefaultOpen: !!newValue,
+  }),
+  "allow-expand-reactions": (props, _, newValue) => ({
+    ...props,
+    allowExpandReactions: !!newValue,
+  }),
+  "preview-config--default-emoji": (props, _, newValue) => ({
+    ...props,
+    previewConfig: {
+      ...(props.previewConfig ?? {}),
+      defaultEmoji: newValue,
+    },
+  }),
+  "preview-config--default-caption":(props, _, newValue) => ({
+    ...props,
+    previewConfig: {
+      ...(props.previewConfig ?? {}),
+      defaultCaption: newValue,
+    },
+  }),
+  "preview-config--show-preview": (props, _, newValue) => ({
+    ...props,
+    previewConfig: {
+      ...(props.previewConfig ?? {}),
+      showPreview: !!newValue
+    },
+  }),
 };
-
-export default getEmojiPickerProps;
 

@@ -1,7 +1,7 @@
 import EmojiPicker from "emoji-picker-react";
 import type { MightyEmojiPicker } from "./main";
 import { useCallback, useEffect, useState } from "react";
-import getEmojiPickerProps from "./utils";
+import { emojiPickerAttributePropMap } from "./utils";
 
 interface IEmojiPickerWrapperProps {
   mightyEmojiPickerElement: MightyEmojiPicker;
@@ -11,13 +11,18 @@ const EmpojiPickerWrapper = (props: IEmojiPickerWrapperProps) => {
   const { mightyEmojiPickerElement } = props;
 
   const [attributeProps, setAttributeProps] = useState({});
-  const [configChangedTime, setConfigChangedTime] = useState(Date.now())
+  const [configChangedTime, setConfigChangedTime] = useState(Date.now());
 
   useEffect(() => {
     const attributeChangeHandler = function () {
       const { detail } = arguments[0] as CustomEvent;
       setAttributeProps(
-        getEmojiPickerProps(attributeProps, detail[0], detail[1], detail[2])
+        attributeProps =>
+        emojiPickerAttributePropMap[detail[0]]?.(
+          attributeProps,
+          detail[1],
+          detail[2]
+        ) || attributeProps
       );
     };
     mightyEmojiPickerElement.addEventListener(
@@ -39,14 +44,20 @@ const EmpojiPickerWrapper = (props: IEmojiPickerWrapperProps) => {
         categories: mightyEmojiPickerElement.categories || undefined,
         customEmojis: mightyEmojiPickerElement.customEmojis || undefined,
         style: mightyEmojiPickerElement.constainerStyle || undefined,
-        getEmojiUrl: mightyEmojiPickerElement.getEmojiUrl || undefined
-      })
+        getEmojiUrl: mightyEmojiPickerElement.getEmojiUrl || undefined,
+      });
       setConfigChangedTime(Date.now());
-    }
-    mightyEmojiPickerElement.addEventListener('configchange', configChangeHandler);
+    };
+    mightyEmojiPickerElement.addEventListener(
+      "configchange",
+      configChangeHandler
+    );
     return () => {
-      mightyEmojiPickerElement.removeEventListener('configchange', configChangeHandler);
-    }
+      mightyEmojiPickerElement.removeEventListener(
+        "configchange",
+        configChangeHandler
+      );
+    };
   }, []);
 
   const onEmojiClick = useCallback(

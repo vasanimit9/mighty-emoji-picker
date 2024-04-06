@@ -1,13 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import EmpojiPickerWrapper from "./EmojiPickerWrapper";
-import type {
-  MouseDownEvent,
-  OnSkinToneChange,
-} from "emoji-picker-react/dist/config/config";
 import type { GetEmojiUrl } from "emoji-picker-react/dist/components/emoji/BaseEmojiProps";
 import type { CategoriesConfig } from "emoji-picker-react/dist/config/categoryConfig";
 import { CustomEmoji } from "emoji-picker-react/dist/config/customEmojiConfig";
+import { emojiPickerAttributePropMap } from "./utils";
 
 export class MightyEmojiPicker extends HTMLElement {
   reactAppRoot: ReturnType<typeof ReactDOM.createRoot>;
@@ -27,7 +24,7 @@ export class MightyEmojiPicker extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['theme', 'emoji-style'];
+    return Object.keys(emojiPickerAttributePropMap);
   }
 
   dispatchConfigChangeEvent() {
