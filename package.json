@@ -18,6 +18,10 @@
       "import": "./dist/main.js"
     }
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vasanimit9/mighty-emoji-picker.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
