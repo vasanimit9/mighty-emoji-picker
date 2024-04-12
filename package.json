@@ -1,7 +1,7 @@
 {
   "name": "mighty-emoji-picker",
   "license": "MIT",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "type": "module",
   "description": "Thin web component wrapper for emoji-picker-react",
   "keywords": [
@@ -13,9 +13,13 @@
     "reactions-picker",
     "emoji-reactions"
   ],
+  "main": "./dist/main.js",
   "exports": {
     ".": {
       "import": "./dist/main.js"
+    },
+    "./mighty-emoji": {
+      "import": "./dist/mighty-emoji.js"
     }
   },
   "repository": {

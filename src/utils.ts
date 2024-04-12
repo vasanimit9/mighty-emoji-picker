@@ -1,4 +1,5 @@
 import type {
+  Emoji,
   EmojiStyle,
   PickerProps,
   SkinTonePickerLocation,
@@ -101,3 +102,31 @@ export const emojiPickerAttributePropMap: {
   }),
 };
 
+export const emojiAttributePropsMap: {
+  [key: string]: (
+    currentProps: Partial<Parameters<typeof Emoji>[0]>,
+    oldValue: string,
+    newValue: string
+  ) => Partial<Parameters<typeof Emoji>[0]>;
+} = {
+  unified: (props, _, newValue) => ({
+    ...props,
+    unified: newValue,
+  }),
+  size: (props, _, newValue) => ({
+    ...props,
+    size: parseFloat(newValue),
+  }),
+  "emoji-style": (props, _, newValue) => ({
+    ...props,
+    emojiStyle: newValue as EmojiStyle,
+  }),
+  "lazy-load": (props, _, newValue) => ({
+    ...props,
+    lazyLoad: !!newValue
+  }),
+  "emoji-url": (props, _, newValue) => ({
+    ...props,
+    emojiUrl: newValue
+  })
+};

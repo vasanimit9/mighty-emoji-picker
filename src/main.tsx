@@ -18,9 +18,7 @@ export class MightyEmojiPicker extends HTMLElement {
   constructor() {
     super();
     this.renderRoot = this.attachShadow({ mode: "open" });
-    const reactRootDiv = document.createElement("div");
-    this.renderRoot.appendChild(reactRootDiv);
-    this.reactAppRoot = ReactDOM.createRoot(reactRootDiv);
+    this.reactAppRoot = ReactDOM.createRoot(this.renderRoot);
   }
 
   static get observedAttributes() {

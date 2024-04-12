@@ -12,7 +12,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      input: "./src/main.tsx",
+      input: ["./src/main.tsx", './src/mighty-emoji.tsx'],
       output: {
         entryFileNames: "[name].js",
       },

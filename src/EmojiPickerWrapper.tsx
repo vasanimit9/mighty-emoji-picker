@@ -14,6 +14,18 @@ const EmpojiPickerWrapper = (props: IEmojiPickerWrapperProps) => {
   const [configChangedTime, setConfigChangedTime] = useState(Date.now());
 
   useEffect(() => {
+    for(let attr of mightyEmojiPickerElement.attributes) {
+      setAttributeProps((attributeProps) => ({
+        ...emojiPickerAttributePropMap[attr.nodeName](
+          attributeProps,
+          "",
+          attr.nodeValue || ""
+        ),
+      }));
+    }
+  }, [mightyEmojiPickerElement]);
+
+  useEffect(() => {
     const attributeChangeHandler = function () {
       const { detail } = arguments[0] as CustomEvent;
       setAttributeProps(
