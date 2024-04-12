@@ -1,7 +1,7 @@
 {
   "name": "mighty-emoji-picker",
   "license": "MIT",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "description": "Thin web component wrapper for emoji-picker-react",
   "keywords": [
@@ -29,11 +29,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@rollup/plugin-alias": "^5.1.0",
     "emoji-picker-react": "^4.9.2",
     "preact": "^10.20.2",
-    "react": "npm:@preact/compat@^17.1.2",
-    "react-dom": "npm:@preact/compat@^17.1.2"
+    "@preact/compat": "^17.1.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
