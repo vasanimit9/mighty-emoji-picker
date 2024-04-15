@@ -137,7 +137,7 @@ To render emoji, this package provides the `mighty-emoji` web component, which i
 | -- | -- | -- |
 | unified | `1f423` | The unified code of the emoji. |
 | size | 32 | The size of the emoji. |
-| emoji-style | `native` | The emoji style to use. Can be either `apple`, `google`, `facebook`, `twitter` or `native`. |
+| emoji-style | `apple` | The emoji style to use. Can be either `apple`, `google`, `facebook`, `twitter` or `native`. |
 | lazy-load | Falsy | Whether to lazy load the emoji image. |
 | emoji-url | "" | The url of the emoji image to render. Useful for custom emojis. |
 
