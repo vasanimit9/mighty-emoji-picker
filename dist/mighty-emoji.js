@@ -9,7 +9,7 @@ var E = (n, t, e) => (p(n, t, "read from private field"), e ? e.call(n) : t.get(
     throw TypeError("Cannot add the same private member more than once");
   t instanceof WeakSet ? t.add(n) : t.set(n, e);
 }, f = (n, t, e, o) => (p(n, t, "write to private field"), o ? o.call(n, e) : t.set(n, e), e);
-import { p as b, _ as c, u as m, b as R, c as g, R as y, a as L } from "./jsxRuntime.module-AlbuIslX.js";
+import { p as b, _ as c, u as g, b as R, c as m, R as y, a as L } from "./jsxRuntime.module-AlbuIslX.js";
 const M = (n) => {
   const {
     mightyEmojiElement: t
@@ -19,7 +19,7 @@ const M = (n) => {
   return c(() => {
     for (let i of t.attributes)
       o((a) => ({
-        ...g[i.nodeName](a, "", i.nodeValue || "")
+        ...m[i.nodeName](a, "", i.nodeValue || "")
       }));
   }, [t]), c(() => {
     const i = function() {
@@ -28,7 +28,7 @@ const M = (n) => {
       } = arguments[0];
       o((u) => {
         var h, d;
-        return ((d = (h = g)[a[0]]) == null ? void 0 : d.call(h, u, a[1], a[2])) || u;
+        return ((d = (h = m)[a[0]]) == null ? void 0 : d.call(h, u, a[1], a[2])) || u;
       });
     };
     return t.addEventListener("attributechange", i), () => {
@@ -43,7 +43,7 @@ const M = (n) => {
     return t.addEventListener("configchange", i), () => {
       t.removeEventListener("configchange", i);
     };
-  }, []), m(R, {
+  }, []), g(R, {
     unified: "1f423",
     ...e
   }, C);
@@ -55,8 +55,8 @@ class U extends HTMLElement {
     s(this, "reactAppRoot");
     l(this, r, void 0);
     s(this, "mountReactApp", () => {
-      this.reactAppRoot.render(m(L.StrictMode, {
-        children: m(M, {
+      this.reactAppRoot.render(g(L.StrictMode, {
+        children: g(M, {
           mightyEmojiElement: this
         })
       }));
@@ -67,7 +67,7 @@ class U extends HTMLElement {
     this.reactAppRoot = y.createRoot(this);
   }
   static get observedAttributes() {
-    return Object.keys(g);
+    return Object.keys(m);
   }
   attributeChangedCallback() {
     const e = new CustomEvent("attributechange", {
@@ -94,8 +94,6 @@ class U extends HTMLElement {
 }
 r = new WeakMap();
 customElements.get("mighty-emoji") || customElements.define("mighty-emoji", U);
-const x = {};
 export {
-  U as MightyEmoji,
-  x as default
+  U as MightyEmoji
 };

@@ -7,9 +7,8 @@ import type { CategoriesConfig } from "emoji-picker-react/dist/config/categoryCo
 import { CustomEmoji } from "emoji-picker-react/dist/config/customEmojiConfig";
 import { emojiPickerAttributePropMap } from "./utils";
 
-
 export class MightyEmojiPicker extends HTMLElement {
-  reactAppRoot: import('../node_modules/@types/react-dom/client').Root;
+  reactAppRoot: import("../node_modules/@types/react-dom/client").Root;
   renderRoot: ShadowRoot;
   #style?: CSSProperties | null;
   #getEmojiUrl?: GetEmojiUrl | null;
@@ -120,4 +119,8 @@ if (!customElements.get("mighty-emoji-picker")) {
   customElements.define("mighty-emoji-picker", MightyEmojiPicker);
 }
 
-export default {};
+declare global {
+  interface HTMLElementTagNameMap {
+    "mighty-emoji-picker": MightyEmojiPicker;
+  }
+}

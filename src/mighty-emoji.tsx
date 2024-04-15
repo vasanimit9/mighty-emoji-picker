@@ -63,4 +63,10 @@ if (!customElements.get("mighty-emoji")) {
   customElements.define("mighty-emoji", MightyEmoji);
 }
 
-export default {};
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "mighty-emoji": MightyEmoji;
+  }
+}
+;

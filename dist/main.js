@@ -69,14 +69,14 @@ const D = (n) => {
     ...e
   }, y);
 };
-var m, g, u, d, l;
+var g, m, u, d, l;
 class H extends HTMLElement {
   constructor() {
     super();
     h(this, "reactAppRoot");
     h(this, "renderRoot");
-    c(this, m, void 0);
     c(this, g, void 0);
+    c(this, m, void 0);
     c(this, u, void 0);
     c(this, d, void 0);
     c(this, l, void 0);
@@ -111,16 +111,16 @@ class H extends HTMLElement {
     this.addEventListener("skintonechange", e);
   }
   set containerStyle(e) {
-    a(this, m, e), this.dispatchConfigChangeEvent();
-  }
-  get constainerStyle() {
-    return s(this, m);
-  }
-  set getEmojiUrl(e) {
     a(this, g, e), this.dispatchConfigChangeEvent();
   }
+  get constainerStyle() {
+    return s(this, g);
+  }
+  set getEmojiUrl(e) {
+    a(this, m, e), this.dispatchConfigChangeEvent();
+  }
   get getEmojiUrl() {
-    return s(this, g) || null;
+    return s(this, m) || null;
   }
   set categories(e) {
     a(this, u, e), this.dispatchConfigChangeEvent();
@@ -153,10 +153,8 @@ class H extends HTMLElement {
     this.unmountReactApp();
   }
 }
-m = new WeakMap(), g = new WeakMap(), u = new WeakMap(), d = new WeakMap(), l = new WeakMap();
+g = new WeakMap(), m = new WeakMap(), u = new WeakMap(), d = new WeakMap(), l = new WeakMap();
 customElements.get("mighty-emoji-picker") || customElements.define("mighty-emoji-picker", H);
-const V = {};
 export {
-  H as MightyEmojiPicker,
-  V as default
+  H as MightyEmojiPicker
 };

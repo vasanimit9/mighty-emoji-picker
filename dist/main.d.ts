@@ -1,15 +1,11 @@
+import { CustomEmoji } from 'emoji-picker-react/dist/config/customEmojiConfig';
 import { CategoriesConfig } from 'emoji-picker-react/dist/config/categoryConfig';
 import { CSSProperties } from 'preact/compat';
-import { CustomEmoji } from 'emoji-picker-react/dist/config/customEmojiConfig';
 import { GetEmojiUrl } from 'emoji-picker-react/dist/components/emoji/BaseEmojiProps';
-import { Root } from '../node_modules/@types/react-dom/client';
-
-declare const _default: {};
-export default _default;
 
 export declare class MightyEmojiPicker extends HTMLElement {
     #private;
-    reactAppRoot: Root;
+    reactAppRoot: import('../node_modules/@types/react-dom/client').Root;
     renderRoot: ShadowRoot;
     constructor();
     static get observedAttributes(): string[];
@@ -33,5 +29,9 @@ export declare class MightyEmojiPicker extends HTMLElement {
     connectedCallback(): void;
     disconnectedCallback(): void;
 }
-
-export { }
+declare global {
+    interface HTMLElementTagNameMap {
+        "mighty-emoji-picker": MightyEmojiPicker;
+    }
+}
+//# sourceMappingURL=main.d.ts.map

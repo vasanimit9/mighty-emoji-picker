@@ -1,12 +1,8 @@
 import { GetEmojiUrl } from 'emoji-picker-react/dist/components/emoji/BaseEmojiProps';
-import { Root } from '../node_modules/@types/react-dom/client';
-
-declare const _default: {};
-export default _default;
 
 export declare class MightyEmoji extends HTMLElement {
     #private;
-    reactAppRoot: Root;
+    reactAppRoot: import('../node_modules/@types/react-dom/client').Root;
     constructor();
     static get observedAttributes(): string[];
     attributeChangedCallback(): void;
@@ -18,5 +14,9 @@ export declare class MightyEmoji extends HTMLElement {
     connectedCallback(): void;
     disconnectedCallback(): void;
 }
-
-export { }
+declare global {
+    interface HTMLElementTagNameMap {
+        "mighty-emoji": MightyEmoji;
+    }
+}
+//# sourceMappingURL=mighty-emoji.d.ts.map
