@@ -1,4 +1,4 @@
-import { Emoji, EmojiStyle } from "emoji-picker-react";
+import { Emoji } from "emoji-picker-react";
 import type { MightyEmoji } from "./mighty-emoji";
 import { useEffect, useState } from "react";
 import { emojiAttributePropsMap } from "./utils";
@@ -9,17 +9,15 @@ interface IEmojiWrapperProps {
 
 const EmojiWrapper = (props: IEmojiWrapperProps) => {
   const { mightyEmojiElement } = props;
-  const [attributeProps, setAttributeProps] = useState<Partial<Parameters<typeof Emoji>[0]>>({
+  const [attributeProps, setAttributeProps] = useState<
+    Partial<Parameters<typeof Emoji>[0]>
+  >({
     unified: mightyEmojiElement.getAttribute("unified") || "1f423",
-    emojiStyle:
-      (mightyEmojiElement.getAttribute("emoji-style") as
-        | EmojiStyle
-        | undefined) || EmojiStyle.NATIVE,
   });
   const [configChangedTime, setConfigChangedTime] = useState(Date.now());
 
   useEffect(() => {
-    for(let attr of mightyEmojiElement.attributes) {
+    for (let attr of mightyEmojiElement.attributes) {
       setAttributeProps((attributeProps) => ({
         ...emojiAttributePropsMap[attr.nodeName](
           attributeProps,
@@ -34,12 +32,12 @@ const EmojiWrapper = (props: IEmojiWrapperProps) => {
     const attributeChangeHandler = function () {
       const { detail } = arguments[0] as CustomEvent;
       setAttributeProps(
-        attributeProps =>
-        emojiAttributePropsMap[detail[0]]?.(
-          attributeProps,
-          detail[1],
-          detail[2]
-        ) || attributeProps
+        (attributeProps) =>
+          emojiAttributePropsMap[detail[0]]?.(
+            attributeProps,
+            detail[1],
+            detail[2]
+          ) || attributeProps
       );
     };
     mightyEmojiElement.addEventListener(
@@ -61,10 +59,7 @@ const EmojiWrapper = (props: IEmojiWrapperProps) => {
       });
       setConfigChangedTime(Date.now());
     };
-    mightyEmojiElement.addEventListener(
-      "configchange",
-      configChangeHandler
-    );
+    mightyEmojiElement.addEventListener("configchange", configChangeHandler);
     return () => {
       mightyEmojiElement.removeEventListener(
         "configchange",
@@ -73,9 +68,7 @@ const EmojiWrapper = (props: IEmojiWrapperProps) => {
     };
   }, []);
 
-  console.log(64, attributeProps)
-
   return <Emoji key={configChangedTime} unified="1f423" {...attributeProps} />;
-}
+};
 
 export default EmojiWrapper;
