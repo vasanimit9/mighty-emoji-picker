@@ -6,14 +6,10 @@ import EmojiWrapper from "./EmojiWrapper";
 
 export class MightyEmoji extends HTMLElement {
   reactAppRoot: ReturnType<typeof ReactDOM.createRoot>;
-  // renderRoot: ShadowRoot;
   #getEmojiUrl?: GetEmojiUrl | null;
 
   constructor() {
     super();
-    // this.renderRoot = this.attachShadow({ mode: "open" });
-    // this.renderRoot.appendChild(reactRootDiv);
-    // console.log(this.renderRoot)
     this.reactAppRoot = ReactDOM.createRoot(this);
   }
 

@@ -48,7 +48,7 @@ The `mighty-emoji-picker` web component dispatches the following events using th
 | width | 350 | Controls the width of the picker. You can provide a number that will be treated as pixel size, or your any accepted css width as string. |
 | height | 450 | Controls the height of the picker. You can provide a number that will be treated as pixel size, or your any accepted css height as string. |
 | reactions-default-open | Falsy | Controls whether the reactions picker is on the initial mount instead of the main picker component. |
-| allowExpandReactions | Truthy | Controls whether the reactions picker can be expanded to the main picker. |
+| allow-expand-reactions | Truthy | Controls whether the reactions picker can be expanded to the main picker. |
 | preview-config--default-emoji | `1f60a` | Controls the default emoji shown in preview. |
 | preview-config--default-caption | "What's your mood?" | Controls the caption shown in preview. |
 | preview-config--show-preview | Truthy | Controls whether preview is shown or not. |
@@ -127,5 +127,22 @@ More:
   ];
   ```
 
-## Future 
-This package does not have a counterpart for `Emoji` component from [`emoji-picker-react`](https://www.npmjs.com/package/emoji-picker-react). That will be added as soon as possible.
+# `mighty-emoji`
+To render emoji, this package provides the `mighty-emoji` web component, which is the counterpart for the `Emoji` component in the `emoji-picker-react` package.
+
+## Configuration
+### Attributes
+
+| Attribute | Default Value | Description |
+| -- | -- | -- |
+| unified | "" | The unified code of the emoji. |
+| size | 32 | The size of the emoji. |
+| emoji-style | `apple` | The emoji style to use. Can be either `apple`, `google`, `facebook`, `twitter` or `native`. |
+| lazy-load | Falsy | Whether to lazy load the emoji image. |
+| emoji-url | "" | The url of the emoji image to render. Useful for custom emojis. |
+
+### Properties
+
+| Property | Type | Description |
+| -- | -- | -- |
+| getEmojiUrl | `(unified: string, emojiStyle: EmojiStyle) => string` | Allows to customize the emoji url and provide your own image host for dynamic resolution. | 
