@@ -5,7 +5,7 @@ import type { GetEmojiUrl } from "emoji-picker-react/dist/components/emoji/BaseE
 import EmojiWrapper from "./EmojiWrapper";
 
 export class MightyEmoji extends HTMLElement {
-  reactAppRoot: ReturnType<typeof ReactDOM.createRoot>;
+  reactAppRoot: import('../node_modules/@types/react-dom/client').Root;
   #getEmojiUrl?: GetEmojiUrl | null;
 
   constructor() {

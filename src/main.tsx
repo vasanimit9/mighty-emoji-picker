@@ -2,14 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import EmpojiPickerWrapper from "./EmojiPickerWrapper";
 import type { GetEmojiUrl } from "emoji-picker-react/dist/components/emoji/BaseEmojiProps";
+import type { CSSProperties } from "preact/compat";
 import type { CategoriesConfig } from "emoji-picker-react/dist/config/categoryConfig";
 import { CustomEmoji } from "emoji-picker-react/dist/config/customEmojiConfig";
 import { emojiPickerAttributePropMap } from "./utils";
 
+
 export class MightyEmojiPicker extends HTMLElement {
-  reactAppRoot: ReturnType<typeof ReactDOM.createRoot>;
+  reactAppRoot: import('../node_modules/@types/react-dom/client').Root;
   renderRoot: ShadowRoot;
-  #style?: React.CSSProperties | null;
+  #style?: CSSProperties | null;
   #getEmojiUrl?: GetEmojiUrl | null;
   #categories?: CategoriesConfig | null;
   #customEmojis?: CustomEmoji[] | null;
@@ -26,28 +28,28 @@ export class MightyEmojiPicker extends HTMLElement {
   }
 
   dispatchConfigChangeEvent() {
-    const configChangeEvent = new CustomEvent('configchange');
+    const configChangeEvent = new CustomEvent("configchange");
     this.dispatchEvent(configChangeEvent);
   }
 
   set onEmojiClick(value: EventListenerOrEventListenerObject) {
-    this.addEventListener('emojiclick', value);
+    this.addEventListener("emojiclick", value);
   }
 
   set onReactionClick(value: EventListenerOrEventListenerObject) {
-    this.addEventListener('reactionclick', value);
+    this.addEventListener("reactionclick", value);
   }
 
   set onSkinToneChange(value: EventListenerOrEventListenerObject) {
-    this.addEventListener('skintonechange', value);
+    this.addEventListener("skintonechange", value);
   }
 
-  set containerStyle(value: React.CSSProperties) {
+  set containerStyle(value: CSSProperties | null) {
     this.#style = value;
     this.dispatchConfigChangeEvent();
   }
 
-  get constainerStyle() {
+  get constainerStyle(): CSSProperties | null | undefined {
     return this.#style;
   }
 
@@ -87,9 +89,9 @@ export class MightyEmojiPicker extends HTMLElement {
   }
 
   attributeChangedCallback() {
-    const attributeChangedEvent = new CustomEvent('attributechange', {
-      detail: arguments
-    })
+    const attributeChangedEvent = new CustomEvent("attributechange", {
+      detail: arguments,
+    });
     this.dispatchEvent(attributeChangedEvent);
   }
 
@@ -99,18 +101,18 @@ export class MightyEmojiPicker extends HTMLElement {
         <EmpojiPickerWrapper mightyEmojiPickerElement={this} />
       </React.StrictMode>
     );
-  }
+  };
 
   unmountReactApp = () => {
     this.reactAppRoot.unmount();
-  }
+  };
 
   connectedCallback() {
     this.mountReactApp();
   }
 
   disconnectedCallback() {
-    this.unmountReactApp()
+    this.unmountReactApp();
   }
 }
 
